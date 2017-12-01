@@ -17,8 +17,8 @@ class Solution : utils.Solution() {
         }
     }
 
-    override fun answer1(): String =
-        walk().last().size.toString()
+    override fun answer1() =
+        walk().last().size
 
     override fun answer2(): String {
         var s = HashSet<Pos>()
