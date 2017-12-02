@@ -1,13 +1,12 @@
-package day01
+package aoc2016
 
-import utils.Pos
 import kotlin.coroutines.experimental.buildSequence
 
-class Solution : utils.Solution() {
+class Day01(private val input: String) {
     private fun walk() = buildSequence {
         var current = Pos(0, 0)
         var dir = Pos.D
-        inputText().split(", ").forEach { s ->
+        input.split(", ").forEach { s ->
             val n = s.substring(1).toInt()
             dir = if (s[0] == 'R') dir.clockwise else dir.anticlockwise
             for (i in 1..n) {
@@ -17,21 +16,17 @@ class Solution : utils.Solution() {
         }
     }
 
-    override fun answer1() =
+    fun answer1() =
         walk().last().size
 
-    override fun answer2(): String {
-        var s = HashSet<Pos>()
+    fun answer2(): Int {
+        val s = HashSet<Pos>()
         for (pos in walk()) {
             if (s.contains(pos)) {
-                return pos.size.toString()
+                return pos.size
             }
             s.add(pos)
         }
-        return ""
+        return 0
     }
-}
-
-fun main(args: Array<String>) {
-    Solution().run()
 }

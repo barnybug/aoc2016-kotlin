@@ -1,4 +1,4 @@
-package utils
+package aoc2016
 
 data class PosRange(override val start: Pos, override val endInclusive: Pos): ClosedRange<Pos>, Iterable<Pos> {
     override fun iterator(): Iterator<Pos> =

@@ -1,10 +1,10 @@
-package day04
+package aoc2016
 
-class Solution : utils.Solution() {
+class Day04(private val input: String) {
     val regex = """^(.+)-(\d+)\[(.{5})\]""".toRegex()
 
-    override fun answer1() =
-        inputLines().sumBy { line ->
+    fun answer1() =
+        input.split("\n").sumBy { line ->
             val m = regex.find(line)!!
             val (name, sector, checksum) = m.destructured
             val n = name.replace("-", "")
@@ -23,18 +23,13 @@ class Solution : utils.Solution() {
         if (it == '-') '-' else alphabet[(it-'a'+s)%26]
     }.joinToString("")
 
-    override fun answer2() =
-        inputLines().mapNotNull { line ->
+    fun answer2() =
+        input.split("\n").mapNotNull { line ->
             val (name, sector, _) = regex.find(line)!!.destructured
             if (decode(name, sector.toInt()) == "northpole-object-storage")
-                sector
+                sector.toInt()
             else
                 null
         }.first()
 
 }
-
-fun main(args: Array<String>) {
-    Solution().run()
-}
-
